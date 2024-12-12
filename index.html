@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="heartbeat-icon.png" type="image/png">
+    <link rel="icon" href="heartbeat-icon.png" type="image/png" />
     <title>Maya Tamir Exp</title>
     <script src="jspsych-6.1.0/jspsych.js"></script>
     <script src="Image_repository.js"></script>
@@ -10,12 +10,12 @@
     <script>
       //initializing number of trials per stage. Stage 1 should be up to 10, represents the number of trials per valence.
       //stage2*2 + stage3*2 <= 50. Stage 2 represents number per valence inside self/other type, stage 3 represents num per person.
-      const STAGE_1_TRIALS_NUM = 4;
-      // const STAGE_1_TRIALS_NUM = 10;
-      const STAGE_2A_TRIALS_NUM = 3;
-      const STAGE_2B_TRIALS_NUM = 3;
-      // const STAGE_2A_TRIALS_NUM = 35;
-      // const STAGE_2B_TRIALS_NUM = 35;
+      // const STAGE_1_TRIALS_NUM = 4;
+      const STAGE_1_TRIALS_NUM = 10;
+      // const STAGE_2A_TRIALS_NUM = 3;
+      // const STAGE_2B_TRIALS_NUM = 3;
+      const STAGE_2A_TRIALS_NUM = 35;
+      const STAGE_2B_TRIALS_NUM = 35;
       const STAGE_3_TRIALS_NUM = 10;
 
       const STAGE_1_INT = 1;
@@ -25,17 +25,17 @@
       //Fast mode?
       const FASTMODE = true;
       //Waiting durations
-      const PRE_TRIAL_BREAK =  5 ;
-      const STIMULUS_PRESENTATION = FASTMODE? 0 : 2000;
-      const NAME_AVERAGE_PRESENTATION = FASTMODE? 0 : 5000;
-      const ITI_PRESENTATION =  FASTMODE? 0 : 4000;
-      const RESPONSE_PRESENTATION =  FASTMODE? 0 :  4000;
-      const RATE_THIS_PERSON_HOLD =  FASTMODE? 0 :  2000;
+      const PRE_TRIAL_BREAK = 5;
+      const STIMULUS_PRESENTATION = FASTMODE ? 0 : 2000;
+      const NAME_AVERAGE_PRESENTATION = FASTMODE ? 0 : 5000;
+      const ITI_PRESENTATION = FASTMODE ? 0 : 4000;
+      const RESPONSE_PRESENTATION = FASTMODE ? 0 : 4000;
+      const RATE_THIS_PERSON_HOLD = FASTMODE ? 0 : 2000;
       // Instruction slides HOLD
-        const WELCOME_HOLD = FASTMODE? 0 : 20000;
-        const STAGE_1_INSTRUCTION_HOLD = FASTMODE? 0 : 20000;
-        const STAGE_2_INSTRUCTION_HOLD = FASTMODE? 0 : 20000;
-        const STAGE_3_INSTRUCTION_HOLD = FASTMODE? 0 : 20000;
+      const WELCOME_HOLD = FASTMODE ? 0 : 20000;
+      const STAGE_1_INSTRUCTION_HOLD = FASTMODE ? 0 : 20000;
+      const STAGE_2_INSTRUCTION_HOLD = FASTMODE ? 0 : 20000;
+      const STAGE_3_INSTRUCTION_HOLD = FASTMODE ? 0 : 20000;
 
       //Initializing variables for logics.js
       var firstCondResponses = [];
@@ -59,42 +59,37 @@
     <script src="instruction_slides.js"></script>
     <link rel="stylesheet" href="jspsych-6.1.0/css/jspsych.css" />
     <link rel="stylesheet" href="./questioneir.css" />
-   <style>
-</style>
-
+    <style></style>
   </head>
   <body dir="ltr">
     <form id="genderForm" class="questionnaire-form">
       <div class="question">
-          <label for="gender">?איך היית רוצה שיתייחסו אליך בניסוי</label>
+        <label for="gender">?איך היית רוצה שיתייחסו אליך בניסוי</label>
       </div>
       <div class="options">
-          <input type="radio" id="male" name="gender" value="male">
-          <label for="male">בלשון זכר</label>
-          <input type="radio" id="female" name="gender" value="female">
-          <label for="female">בלשון נקבה</label>
+        <input type="radio" id="male" name="gender" value="male" />
+        <label for="male">בלשון זכר</label>
+        <input type="radio" id="female" name="gender" value="female" />
+        <label for="female">בלשון נקבה</label>
       </div>
       <div class="ageQuestion">
-        <input type="number" id="age" name="age">
+        <input type="number" id="age" name="age" />
         <label for="age">:גיל</label>
       </div>
-      <input type="submit" value="בחר\י" class="submit-button">
-  </form>
-  
-  
-  
-    
+      <input type="submit" value="בחר\י" class="submit-button" />
+    </form>
+
     <script>
       // this funciton starts the experiment
-      function startExperiment(gender,age,cond,genderSubject,Subject){
+      function startExperiment(gender, age, cond, genderSubject, Subject) {
         const names =
-        gender == "male"
-          ? jsPsych.randomization.repeat(M_names, 1)
-          : jsPsych.randomization.repeat(F_names, 1);
+          gender == "male"
+            ? jsPsych.randomization.repeat(M_names, 1)
+            : jsPsych.randomization.repeat(F_names, 1);
 
         //Create experiment objects
         var stage1Objects = !FASTMODE
-          ? [TRAINING_NEG_IMAGES_OBJS[0],TRAINING_NEG_IMAGES_OBJS[1]]
+          ? [TRAINING_NEG_IMAGES_OBJS[0], TRAINING_NEG_IMAGES_OBJS[1]]
           : BASELINE_NEG_IMAGES_OBJS;
 
         var stage2Objects = !FASTMODE
@@ -103,11 +98,11 @@
               self: [TRAINING_NEG_IMAGES_OBJS[1]],
             }
           : {
-              other: TRAINING_NEG_IMAGES_OBJS.slice(
-                0,STAGE_2A_TRIALS_NUM),
+              other: TRAINING_NEG_IMAGES_OBJS.slice(0, STAGE_2A_TRIALS_NUM),
               self: TRAINING_NEG_IMAGES_OBJS.slice(
-                 STAGE_2A_TRIALS_NUM,
-                 STAGE_2A_TRIALS_NUM + STAGE_2B_TRIALS_NUM)
+                STAGE_2A_TRIALS_NUM,
+                STAGE_2A_TRIALS_NUM + STAGE_2B_TRIALS_NUM
+              ),
             };
 
         for (var i = 0; i < stage2Objects.other.length; i++) {
@@ -115,56 +110,76 @@
           stage2Objects.other[i].cond = cond;
         }
 
-      var stage3Object = []
-      const stage3len = !FASTMODE? 2:STAGE_3_TRIALS_NUM;
-      for (var i = 0;i < stage3len ;i++){
+        var stage3Object = [];
+        const stage3len = !FASTMODE ? 2 : STAGE_3_TRIALS_NUM;
+        for (var i = 0; i < stage3len; i++) {
           var stage3TrialObject = {
-            name:names[names.length - i -1 ],
-            isMex : averageResponses[averageResponses.length -i -1 ][1],
-            average:averageResponses[averageResponses.length -i -1 ][0]
-          }
+            name: names[names.length - i - 1],
+            isMex: averageResponses[averageResponses.length - i - 1][1],
+            average: averageResponses[averageResponses.length - i - 1][0],
+          };
           stage3Object.push(stage3TrialObject);
         }
 
         Stage1Timeline = [];
         for (var i = 0; i < stage1Objects.length; i++) {
-          Stage1Timeline.push(firstCond(stage1Objects[i],gender,STAGE_1_INT,age,Subject));
+          Stage1Timeline.push(
+            firstCond(stage1Objects[i], gender, STAGE_1_INT, age, Subject)
+          );
         }
-        var Stage1Full = {timeline:Stage1Timeline} 
+        var Stage1Full = { timeline: Stage1Timeline };
         Stage2Timeline = [];
-      for (var i = 0; i < stage2Objects.self.length; i++) {
-        Stage2Timeline.push(
-          firstCond(stage2Objects.self[i],gender,STAGE_2_INT,age,Subject),
-          otherCond(stage2Objects.other[i],gender,age,Subject)
-        );
-      }
-      Stage2Timeline = jsPsych.randomization.repeat(Stage2Timeline,1);
-      var Stage2Full = {timeline:Stage2Timeline} 
+        for (var i = 0; i < stage2Objects.self.length; i++) {
+          Stage2Timeline.push(
+            firstCond(stage2Objects.self[i], gender, STAGE_2_INT, age, Subject),
+            otherCond(stage2Objects.other[i], gender, age, Subject)
+          );
+        }
+        Stage2Timeline = jsPsych.randomization.repeat(Stage2Timeline, 1);
+        var Stage2Full = { timeline: Stage2Timeline };
 
-      var stage3Timeline = []; 
-      const stage3ObjectNum = FASTMODE ?1 : stage3Object.length;
-      for (var i = 0; i < stage3ObjectNum; i++) {
-        stage3Timeline.push(stage3SinglePerson(stage3Object[i],gender,age,Subject));
-      }
-      var Stage3Full = {timeline:stage3Timeline} 
+        var stage3Timeline = [];
+        const stage3ObjectNum = !FASTMODE ? 1 : stage3Object.length;
+        for (var i = 0; i < stage3ObjectNum; i++) {
+          stage3Timeline.push(
+            stage3SinglePerson(stage3Object[i], gender, age, Subject)
+          );
+        }
+        var Stage3Full = { timeline: stage3Timeline };
 
-        
-      // // fullscrenStart,fullscrenEnd
-        let timeline = gender == "male" ?
-          [welcomeSlideA,welcomeSlideB,stage1InstMaleA,stage1InstMaleB,
-          Stage1Full,
-          calculateFirstCondDiffenece,
-          stage2InstMaleA,stage2InstMaleB,
-          Stage2Full,
-          stage3InstMaleA,stage3InstMaleB,
-          Stage3Full,fifthSlideMale(gender,genderSubject)]
-        :[welcomeSlideA,welcomeSlideB,stage1InstFemaleA,stage1InstFemaleB,
-          Stage1Full,
-          calculateFirstCondDiffenece,
-          stage2InstFemaleA,stage2InstFemaleB,
-          Stage2Full,
-          stage3InstFemaleA,stage3InstFemaleB,
-          Stage3Full,fifthSlideFemale(gender,genderSubject)]
+        // // fullscrenStart,fullscrenEnd
+        let timeline =
+          gender == "male"
+            ? [
+                welcomeSlideA,
+                welcomeSlideB,
+                stage1InstMaleA,
+                stage1InstMaleB,
+                Stage1Full,
+                calculateFirstCondDiffenece,
+                stage2InstMaleA,
+                stage2InstMaleB,
+                Stage2Full,
+                stage3InstMaleA,
+                stage3InstMaleB,
+                Stage3Full,
+                fifthSlideMale(gender, genderSubject),
+              ]
+            : [
+                welcomeSlideA,
+                welcomeSlideB,
+                stage1InstFemaleA,
+                stage1InstFemaleB,
+                Stage1Full,
+                calculateFirstCondDiffenece,
+                stage2InstFemaleA,
+                stage2InstFemaleB,
+                Stage2Full,
+                stage3InstFemaleA,
+                stage3InstFemaleB,
+                Stage3Full,
+                fifthSlideFemale(gender, genderSubject),
+              ];
 
         //   let timeline = gender == "male" ?
         //   [Stage3Full,fifthSlideMale(gender,Subject)]
@@ -176,69 +191,72 @@
         //   stage3InstFemaleA,stage3InstFemaleB,
         //   Stage3Full,fifthSlideMale(gender,Subject)]
 
-
-
-      var allImages = TRAINING_NEG_IMAGES_OBJS;
-      var IMAGES_TO_LOAD = [];
+        var allImages = TRAINING_NEG_IMAGES_OBJS;
+        var IMAGES_TO_LOAD = [];
         for (var i = 0; i < allImages.length; i++) {
           IMAGES_TO_LOAD.push("stimuli/" + allImages[i].pic_num + ".jpg");
         }
         jsPsych.init({
           timeline: timeline,
           preload_images: IMAGES_TO_LOAD,
-          on_finish:function(){
+          on_finish: function () {
             console.log(experimentResult);
           },
         });
       }
 
+      document
+        .getElementById("genderForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault(); // Prevent default form submission behavior
+          // Enter fullscreen mode on finishing this trial
+          var element = document.documentElement;
+          if (element.requestFullscreen) {
+            element.requestFullscreen().then(() => {
+              document.body.focus();
+              maintainBodyFocus();
+            });
+          } else if (element.mozRequestFullScreen) {
+            // Firefox
+            element.mozRequestFullScreen().then(() => {
+              document.body.focus();
+              maintainBodyFocus();
+            });
+          } else if (element.webkitRequestFullscreen) {
+            // Chrome, Safari and Opera
+            element.webkitRequestFullscreen().then(() => {
+              document.body.focus();
+              maintainBodyFocus();
+            });
+          } else if (element.msRequestFullscreen) {
+            // IE/Edge
+            element.msRequestFullscreen().then(() => {
+              document.body.focus();
+              maintainBodyFocus();
+            });
+          }
 
+          // gets gender age and number of participant and caclulate cond
+          var kv = await getParticipantNum();
+          const maleCounter = kv.maleCounter;
+          const femaleCounter = kv.femaleCounter;
 
-      document.getElementById("genderForm").addEventListener("submit",async function(event) {
-        event.preventDefault(); // Prevent default form submission behavior
-            // Enter fullscreen mode on finishing this trial
-    var element = document.documentElement;
-    if (element.requestFullscreen) {
-      element.requestFullscreen().then(() => {
-        document.body.focus();
-        maintainBodyFocus();
-      });
-    } else if (element.mozRequestFullScreen) { // Firefox
-      element.mozRequestFullScreen().then(() => {
-        document.body.focus();
-        maintainBodyFocus();
-      });
-    } else if (element.webkitRequestFullscreen) { // Chrome, Safari and Opera
-      element.webkitRequestFullscreen().then(() => {
-        document.body.focus();
-        maintainBodyFocus();
-      });
-    } else if (element.msRequestFullscreen) { // IE/Edge
-      element.msRequestFullscreen().then(() => {
-        document.body.focus();
-        maintainBodyFocus();
-      });
-    }
+          var age = document.getElementById("age").value;
+          var gender = document.querySelector(
+            'input[name="gender"]:checked'
+          ).value;
 
+          const genderSubject = gender == "male" ? maleCounter : femaleCounter;
+          const Subject = maleCounter + femaleCounter;
+          var cond = Subject % 2 == 0 ? 1 : -1;
+          condition = cond;
 
-        // gets gender age and number of participant and caclulate cond 
-        var kv = await getParticipantNum();
-        const maleCounter = kv.maleCounter
-        const femaleCounter = kv.femaleCounter
-        
-        var age = document.getElementById('age').value;
-        var gender = document.querySelector('input[name="gender"]:checked').value;     
-
-        const genderSubject = gender == "male" ?maleCounter:femaleCounter;
-        const Subject = maleCounter + femaleCounter;
-        var cond = Subject % 2 == 0 ? 1 : -1;
-        condition = cond;
-
-        if(0> age || age > 85){return;}
-    //   // Start the experiment with the collected gender data
-        startExperiment(gender,age,cond,genderSubject,Subject);
-      });
-    
+          if (0 > age || age > 85) {
+            return;
+          }
+          //   // Start the experiment with the collected gender data
+          startExperiment(gender, age, cond, genderSubject, Subject);
+        });
     </script>
   </body>
 </html>
